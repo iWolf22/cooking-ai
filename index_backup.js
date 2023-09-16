@@ -29,7 +29,7 @@ const port = 3001;
   });
 
   const page = await browser.newPage();
-  await page.goto("https://www.thechunkychef.com/family-favorite-baked-mac-and-cheese/");
+  await page.goto("https://en.wikipedia.org/wiki/Canada");
 
   await page.screenshot({ path: "image.png"});
 
@@ -58,24 +58,14 @@ const pageData = await page.evaluate(() => {
 
 const $ = load(pageData.html);
 
-const headings = $("h2, h3").get();
+const headings = $("h2").get();
 
 // console.log($.text());
 
 
 for (const _heading of headings) {
-  const heading = $(_heading).text();
-  if (heading.includes("Instructions") || heading.includes("instructions")) {
-    const parentBody = $(_heading).parent();
-    console.log($(parentBody).text());
-    //add instructions and everything into array together before feeding to openAI
-  }
-  if (heading.includes("Ingredients") || heading.includes("ingredients")) {
-    const parentBody = $(_heading).parent();
-    console.log($(parentBody).text());
-
-    //console.log(heading);
-  }
+  const heading = $(_heading)
+  console.log(heading.text());
 }
 
   await browser.close();
