@@ -11,8 +11,6 @@ const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 const { load } = require('cheerio');
 
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
 
 /*
 const app = express();
@@ -41,26 +39,9 @@ const pageData = await page.evaluate(() => {
   }
 })
 
-// console.log(pageData.html);
-
-// const document = (new JSDOM(pageData.html, {includeNodeLocations: true})).window.document;
-
-// console.log(document.querySelectorAll("div"));
-// for (const h2 of document.querySelectorAll("h2")) {
-//   if (h2.textContent.includes("Economy")) {
-//     console.log("economy!");
-//     console.log(h2.parent);
-//     console.log(h2);
-//     console.log({...h2});
-//     console.log(h2.);
-//   }
-// }
-
 const $ = load(pageData.html);
 
 const headings = $("h2, h3").get();
-
-// console.log($.text());
 
 var body = {
   ingredients: "",
