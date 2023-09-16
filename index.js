@@ -29,7 +29,7 @@ const port = 3001;
   });
 
   const page = await browser.newPage();
-  await page.goto("https://www.thechunkychef.com/family-favorite-baked-mac-and-cheese/");
+  await page.goto("https://www.honestfoodtalks.com/green-tea-matcha-mochi-recipe/");
 
   await page.screenshot({ path: "image.png"});
 
@@ -62,21 +62,27 @@ const headings = $("h2, h3").get();
 
 // console.log($.text());
 
+var body = {
+  ingredients: "",
+  instructions: ""
+};
 
 for (const _heading of headings) {
   const heading = $(_heading).text();
-  if (heading.includes("Instructions") || heading.includes("instructions")) {
-    const parentBody = $(_heading).parent();
-    console.log($(parentBody).text());
-    //add instructions and everything into array together before feeding to openAI
-  }
   if (heading.includes("Ingredients") || heading.includes("ingredients")) {
     const parentBody = $(_heading).parent();
-    console.log($(parentBody).text());
-
-    //console.log(heading);
+    //console.log($(parentBody).text());
+    body.ingredients = $(parentBody).text();
   }
+  if (heading.includes("Instructions") || heading.includes("instructions") || heading.includes("Preparation")) {
+    const parentBody = $(_heading).parent();
+    body.instructions = $(parentBody).text();
+    //add instructions and everything into array together before feeding to openAI
+  }
+
 }
+
+console.log("Ingredients: " + body.ingredients + " Instructions: " + body.instructions);
 
   await browser.close();
 })();
