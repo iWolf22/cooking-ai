@@ -24,7 +24,7 @@ const port = 3001;
       width: 500,
       height: 900,
     }
-  });
+});
 
   const page = await browser.newPage();
   await page.goto("https://www.honestfoodtalks.com/green-tea-matcha-mochi-recipe/");
