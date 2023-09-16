@@ -1,3 +1,37 @@
+const textToSpeech = require('@google-cloud/text-to-speech')
+
+// dot env
+
+require('dotenv').config()
+
+const fs = require('fs')
+
+const util = require('util')
+
+const client = new textToSpeech.TextToSpeechClient()
+
+async function convertTextToMp3() {
+  const text = "HEY GUYS LISTEN TO THIS"
+
+  const request = {
+    input: {text:text},
+    voice:{languageCode:'en-US',ssmlGender:'NEUTRAL'},
+    audioConfig:{audioEncoding:'MP3'}
+  }
+
+  const [response] = await client.synthesizeSpeech(request)
+
+  const writeFile = util.promisify(fs.writeFile)
+
+  await writeFile("output.mp3", response.audioContent, "binary")
+
+  console.log("Text to Speech has completed. Audio FIle has been saved")
+}
+
+
+convertTextToMp3()
+
+
 /*import express from "express";
 import bodyParser from "body-parser";
 
@@ -6,44 +40,67 @@ require("dotenv").config();
 import { Configuration, OpenAIApi } from "openai";
 */
 
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
 
-const cheerio = require('cheerio');
-const { load } = require('cheerio');
+// const cheerio = require('cheerio');
+// const { load } = require('cheerio');
+
 
 /*
 const app = express();
 const port = 3001;
 */
 
-(async () => {
-  const browser = await puppeteer.launch({
-    defaultViewport: {
+// (async () => {
+//   const browser = await puppeteer.launch({
+//     defaultViewport: {
       
-      width: 500,
-      height: 900,
-    }
-  });
+//       width: 500,
+//       height: 900,
+//     }
+// });
 
-  const page = await browser.newPage();
-  await page.goto("https://en.wikipedia.org/wiki/Canada");
+//   const page = await browser.newPage();
+//   await page.goto("https://www.honestfoodtalks.com/green-tea-matcha-mochi-recipe/");
 
-  await page.screenshot({ path: "image.png"});
+//   await page.screenshot({ path: "image.png"});
 
-const pageData = await page.evaluate(() => {
-  return {
-    html: document.documentElement.innerHTML,
-    width: document.documentElement.clientWidth,
-    height: document.documentElement.clientHeight,
-  }
-})
+// const pageData = await page.evaluate(() => {
+//   return {
+//     html: document.documentElement.innerHTML,
+//     width: document.documentElement.clientWidth,
+//     height: document.documentElement.clientHeight,
+//   }
+// })
 
-const $ = load(pageData.html);
+// const $ = load(pageData.html);
 
-console.log($.text());
+// const headings = $("h2, h3").get();
 
-  await browser.close();
-})();
+// var body = {
+//   ingredients: "",
+//   instructions: ""
+// };
+
+// for (const _heading of headings) {
+//   const heading = $(_heading).text();
+//   if (heading.includes("Ingredients") || heading.includes("ingredients")) {
+//     const parentBody = $(_heading).parent();
+//     //console.log($(parentBody).text());
+//     body.ingredients = $(parentBody).text();
+//   }
+//   if (heading.includes("Instructions") || heading.includes("instructions") || heading.includes("Preparation")) {
+//     const parentBody = $(_heading).parent();
+//     body.instructions = $(parentBody).text();
+//     //add instructions and everything into array together before feeding to openAI
+//   }
+
+// }
+
+// console.log("Ingredients: " + body.ingredients + " Instructions: " + body.instructions);
+
+//   await browser.close();
+// })();
 
 /*
 app.use(bodyParser.urlencoded({ extended: true }));
