@@ -1,5 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
+require("dotenv").config();
+
+import { Configuration, OpenAIApi } from "openai";
 
 const app = express();
 const port = 3000;
