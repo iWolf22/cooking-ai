@@ -3,28 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-<<<<<<< HEAD
-=======
-  "type": "commonjs",
->>>>>>> a68aa09e92eb86e2b60fb76831208d94c35198c2
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/text-to-speech": "^5.0.1",
     "body-parser": "^1.20.2",
     "cheerio": "^1.0.0-rc.12",
-<<<<<<< HEAD
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "openai": "^3.1.0",
-=======
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "openai": "^4.7.1",
->>>>>>> a68aa09e92eb86e2b60fb76831208d94c35198c2
+    "openai": "^3.1.0",
     "puppeteer": "^21.2.1"
   }
 }
