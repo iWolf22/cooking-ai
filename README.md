@@ -1,2 +1,1 @@
-# cooking-ai
-Cooking AI assistant for HackTheNorth 2023
+# chatgpt-example
